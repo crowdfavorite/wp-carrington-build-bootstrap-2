@@ -1,7 +1,7 @@
 <?php
 /*
-* Plugin Name: Twitter Bootstrap Build Settings
-* Description: Transfer Carrington Build grid classes, markup and row types to Twitter Bootstrap format.
+* Plugin Name: Restore Deprecated Build Settings
+* Description: Bring back old Carrington Build grid classes, markup and row types for backwards-compatibility.
 * Version: 1.0
 * Author: Crowd Favorite
 * Author URI: http://crowdfavorite.com
@@ -12,35 +12,60 @@ class CFCT_Restore_Deprecated {
 	public $block_classes_change_map = array();
 	
 	public $old_row_classname_to_new = array(
-		// Static Rows (9-column grid)
-		'row-c4-1234' => 'row row-span9',
+		// Rows
+		'row-c4-1234' => 'row-fluid row-fluid-span12',
 
-		'row-c6-12-34-56' => 'row row-span3-3-3',
+		'row-c6-12-34-56' => 'row-fluid row-fluid-span4-4-4',
 
-		'row-c6-1234-56' => 'row row-span6-3',
-		'row-c6-12-3456' => 'row row-span3-6',
+		'row-c6-1234-56' => 'row-fluid row-fluid-span8-4',
+		'row-c6-12-3456' => 'row-fluid row-fluid-span4-8',
 
-		// Fluid Row (12-column grid)
 		'row-c4-12-34' => 'row-fluid row-fluid-span6-6',
 
 		// Weird rows
-		// 'cfct-row-float-a' => 'row-c6-12-3456 row-c6-12-float-left',
-		// 'cfct-row-float-c' => 'row-c6-1234-56 row-c6-56-float-right',
+		'cfct-row-float-a' => 'row-c6-12-3456 row-c6-12-float-left',
+		'cfct-row-float-c' => 'row-c6-1234-56 row-c6-56-float-right',
 	);
 
 	public $old_block_classname_to_new = array(
-		'c4-1234' => 'span9',
+		'c6-123456' => 'span12',
+		'c4-1234' => 'span12',
 
-		'c6-1234' => 'span6',
-		'c6-3456' => 'span6',
+		'c6-12345' => 'span10',
+		'c6-23456' => 'span10',
 
-		'c6-12' => 'span3',
-		'c6-34' => 'span3',
-		'c6-56' => 'span3',
+		'c6-1234' => 'span9',
+		'c6-2345' => 'span9',
+		'c6-3456' => 'span9',
 
-		// Fluid
+		'c4-123' => 'span8',
+		'c4-234' => 'span8',
+
+		'c6-123' => 'span6',
+		'c6-234' => 'span6',
+		'c6-345' => 'span6',
+		'c6-456' => 'span6',
 		'c4-12' => 'span6',
+		'c4-23' => 'span6',
 		'c4-34' => 'span6',
+
+		'c6-12' => 'span4',
+		'c6-23' => 'span4',
+		'c6-34' => 'span4',
+		'c6-45' => 'span4',
+		'c6-56' => 'span4';
+
+		'c4-1' => 'span3',
+		'c4-2' => 'span3',
+		'c4-3' => 'span3',
+		'c4-4' => 'span3',
+
+		'c6-1' => 'span2',
+		'c6-2' => 'span2',
+		'c6-3' => 'span2',
+		'c6-4' => 'span2',
+		'c6-5' => 'span2',
+		'c6-6' => 'span2'
 	);
 	
 	public function __construct() {
@@ -102,20 +127,28 @@ class CFCT_Restore_Deprecated {
 		
 		$block_class_filters = array(
 			/* Full */
-			'cfct-block-c4-1234-classes',
+			'cfct-block-span9-classes',
+
+			/* 5 Sixths */
+			'cfct-block-span10-classes',
 			
-			/* Halves */
-			'cfct-block-c4-12-classes',
-			'cfct-block-c4-34-classes',
-			
-			/* Thirds */
-			'cfct-block-c6-12-classes',
-			'cfct-block-c6-34-classes',
-			'cfct-block-c6-56-classes',
+			/* 3 Quarters */
+			'cfct-block-span9-classes',
 			
 			/* 2 Thirds */
-			'cfct-block-c6-1234-classes',
-			'cfct-block-c6-3456-classes'
+			'cfct-block-span8-classes',
+
+			/* Halves */
+			'cfct-block-span6-classes',
+
+			/* Thirds */
+			'cfct-block-span4-classes',
+
+			/* Quarters */
+			'cfct-block-span3-classes',
+
+			/* Sixths */
+			'cfct-block-span2-classes'
 		);
 		
 		foreach($block_class_filters as $filter_key) {
