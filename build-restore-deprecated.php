@@ -1,7 +1,7 @@
 <?php
 /*
-* Plugin Name: Restore Deprecated Build Settings
-* Description: Bring back old Carrington Build grid classes, markup and row types for backwards-compatibility.
+* Plugin Name: Twitter Bootstrap Build Settings
+* Description: Transfer Carrington Build grid classes, markup and row types to Twitter Bootstrap format.
 * Version: 1.0
 * Author: Crowd Favorite
 * Author URI: http://crowdfavorite.com
@@ -12,33 +12,35 @@ class CFCT_Restore_Deprecated {
 	public $block_classes_change_map = array();
 	
 	public $old_row_classname_to_new = array(
-		// Rows
-		'cfct-row-abc' => 'row-c4-1234',
+		// Static Rows (9-column grid)
+		'row-c4-1234' => 'row row-span9',
 
-		'cfct-row-a-b-c' => 'row-c6-12-34-56',
+		'row-c6-12-34-56' => 'row row-span3-3-3',
 
-		'cfct-row-ab-c' => 'row-c6-1234-56',
-		'cfct-row-a-bc' => 'row-c6-12-3456',
+		'row-c6-1234-56' => 'row row-span6-3',
+		'row-c6-12-3456' => 'row row-span3-6',
 
-		'cfct-row-d-e' => 'row-c4-12-34',
+		// Fluid Row (12-column grid)
+		'row-c4-12-34' => 'row-fluid row-fluid-span6-6',
 
 		// Weird rows
-		'cfct-row-float-a' => 'row-c6-12-3456 row-c6-12-float-left',
-		'cfct-row-float-c' => 'row-c6-1234-56 row-c6-56-float-right',
+		// 'cfct-row-float-a' => 'row-c6-12-3456 row-c6-12-float-left',
+		// 'cfct-row-float-c' => 'row-c6-1234-56 row-c6-56-float-right',
 	);
 
 	public $old_block_classname_to_new = array(
-		'cfct-block-abc' => 'c4-1234',
+		'c4-1234' => 'span9',
 
-		'cfct-block-ab' => 'c6-1234',
-		'cfct-block-bc' => 'c6-3456',
+		'c6-1234' => 'span6',
+		'c6-3456' => 'span6',
 
-		'cfct-block-a' => 'c6-12',
-		'cfct-block-b' => 'c6-34',
-		'cfct-block-c' => 'c6-56',
+		'c6-12' => 'span3',
+		'c6-34' => 'span3',
+		'c6-56' => 'span3',
 
-		'cfct-block-d' => 'c4-12',
-		'cfct-block-e' => 'c4-34',
+		// Fluid
+		'c4-12' => 'span6',
+		'c4-34' => 'span6',
 	);
 	
 	public function __construct() {
