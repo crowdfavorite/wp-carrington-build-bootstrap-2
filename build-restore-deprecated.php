@@ -53,7 +53,7 @@ class CFCT_Restore_Deprecated {
 		'c6-23' => 'span4',
 		'c6-34' => 'span4',
 		'c6-45' => 'span4',
-		'c6-56' => 'span4';
+		'c6-56' => 'span4',
 
 		'c4-1' => 'span3',
 		'c4-2' => 'span3',
@@ -289,33 +289,33 @@ class CFCT_Restore_Deprecated {
 	 * do a feature check to make sure this version of Build is compatible with
 	 * this plugin.
 	 */
-	public static function check_features() {
-		if (!function_exists('cfct_build')) {
-			return new WP_Error('function not found', 'Carrington Build needs to be activated for \"Restore Deprecated Build Settings\" to take effect.');
-		}
-		if (!class_exists('cfct_tpl')) {
-			return new WP_Error('class not found', 'Class cfct_tpl does not exist. You probably need to install a newer version of Carrington Build.');
-		}
-		if (!function_exists('cfct_build_register_row')) {
-			return new WP_Error('function not found', 'Function cfct_build_register_row does not exist.');
-		}
-	}
+	// public static function check_features() {
+	// 	if (!function_exists('cfct_build')) {
+	// 		return new WP_Error('function not found', 'Carrington Build needs to be activated for \"Restore Deprecated Build Settings\" to take effect.');
+	// 	}
+	// 	if (!class_exists('cfct_tpl')) {
+	// 		return new WP_Error('class not found', 'Class cfct_tpl does not exist. You probably need to install a newer version of Carrington Build.');
+	// 	}
+	// 	if (!function_exists('cfct_build_register_row')) {
+	// 		return new WP_Error('function not found', 'Function cfct_build_register_row does not exist.');
+	// 	}
+	// }
 	
 	/**
 	 * Hook this into init()
 	 */
 	public static function init() {
-		$diagnostics = self::check_features();
-		if (is_wp_error($diagnostics)) {
-			$cb = create_function('', 'echo "<div class=\'message error\'>
-	<p>'.$diagnostics->get_error_message().'</p>
-</div>";');
-			add_action('admin_notices', $cb);
-		}
-		else {
+// 		$diagnostics = self::check_features();
+// 		if (is_wp_error($diagnostics)) {
+// 			$cb = create_function('', 'echo "<div class=\'message error\'>
+// 	<p>'.$diagnostics->get_error_message().'</p>
+// </div>";');
+// 			add_action('admin_notices', $cb);
+// 		}
+// 		else {
 			$instance = new CFCT_Restore_Deprecated();
 			$instance->attach_hooks();
-		}
+		// }
 	}
 }
 add_action('init', array('CFCT_Restore_Deprecated', 'init'));
