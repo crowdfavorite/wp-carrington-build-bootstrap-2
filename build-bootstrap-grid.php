@@ -13,7 +13,6 @@ class CFCT_Restore_Deprecated {
         
         public $old_row_classname_to_new = array(
                 // Rows
-        		'row-fluid' => 'row',
                 // 'row-fluid' => 'row-c4-1234',
 
                 // 'row-fluid' => 'row-c6-12-34-56',
@@ -26,23 +25,55 @@ class CFCT_Restore_Deprecated {
                 // // Weird rows
                 // 'row-fluid' => 'row-c6-12-3456 row-c6-12-float-left',
                 // 'row-fluid' => 'row-c6-1234-56 row-c6-56-float-right'
+
+        		// Proper ordering
+        		'row-c4-1234' => 'row-fluid',
+
+                'row-c6-12-34-56' => 'row-fluid',
+
+                'row-c6-1234-56' => 'row-fluid',
+                'row-c6-12-3456' => 'row-fluid',
+
+                'row-c4-12-34' => 'row-fluid',
+
+                // Weird rows
+                'row-c6-12-3456 row-c6-12-float-left' => 'row-fluid',
+                'row-c6-1234-56 row-c6-56-float-right' => 'row-fluid'
         );
  
         public $old_block_classname_to_new = array(
                 // All New Grid classes in Carrington
-                'span12' => 'c4-1234',
+
+        		// Proper ordering
+        		'c4-1234' => 'span12',
          
-                'span8' => 'c6-1234',
-                'span8' => 'c6-3456',
+                'c6-1234' => 'span8',
+                'c6-3456' => 'span8',
 
-                'span6' => 'c4-12',
-                'span6' => 'c4-34',
+                'c4-12' => 'span6',
+                'c4-34' => 'span6',
 
-                'span4' => 'c6-12',
-                'span4' => 'c6-34',
-                'span4' => 'c6-56',
+                'c6-12' => 'span4',
+                'c6-34' => 'span4',
+                'c6-56' => 'span4',
 
-                // All Gew Grid classes
+                'c6-12' => 'span4',
+                'c6-34' => 'span4',
+                'c6-56' => 'span4'
+
+                // 'span12' => 'c4-1234',
+         
+                // 'span8' => 'c6-1234',
+                // 'span8' => 'c6-3456',
+
+                // 'span6' => 'c4-12',
+                // 'span6' => 'c4-34',
+
+                // 'span4' => 'c6-12',
+                // 'span4' => 'c6-34',
+                // 'span4' => 'c6-56',
+
+        		// All Gew Grid classes
                 // 'span12' => 'c6-123456',
                 // 'span12' => 'c4-1234',
 
@@ -84,10 +115,10 @@ class CFCT_Restore_Deprecated {
         );
         
         public function __construct() {
-                foreach ($this->old_row_classname_to_new as $old => $new) {
+                foreach ($this->old_row_classname_to_new as $new => $old) {
                         $this->push_row_class_change($old, $new);
                 }
-                foreach ($this->old_block_classname_to_new as $old => $new) {
+                foreach ($this->old_block_classname_to_new as $new => $old) {
                         $this->push_block_class_change($old, $new);
                 }
                 
