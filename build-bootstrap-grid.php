@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: Restore Deprecated Build Settings
-* Description: Bring back old Carrington Build grid classes, markup and row types for backwards-compatibility.
+* Description: Add in Twitter Bootstrap grid classes, markup and row types for backwards-compatibility.
 * Version: 1.0
 * Author: Crowd Favorite
 * Author URI: http://crowdfavorite.com
@@ -258,9 +258,7 @@ class CFCT_Restore_Deprecated {
          * Backwards-compat row markup
          */
         public function restore_row_html($html, $classname, $classes) {
-                return '<div id="{id}" class="{class}">
-        <div class="cfct-row-inner">{blocks}</div>
-</div>';
+                return '<div id="{id}" class="{class}">{blocks}</div>';
         }
         
         /**
@@ -308,7 +306,6 @@ class CFCT_Restore_Deprecated {
                 $classes = $this->restore_classes(
                         $this->row_classes_change_map, $classes
                 );
-                $classes[] = 'cfct-row';
                 return $classes;
         }
         
@@ -316,7 +313,6 @@ class CFCT_Restore_Deprecated {
                 $classes = $this->restore_classes(
                         $this->block_classes_change_map, $classes
                 );
-                $classes[] = 'cfct-block';
                 return $classes;
         }
         
