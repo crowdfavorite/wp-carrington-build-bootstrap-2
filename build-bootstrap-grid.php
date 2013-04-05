@@ -1,13 +1,13 @@
 <?php
 /*
-* Plugin Name: Restore Deprecated Build Settings
+* Plugin Name: Twitter Bootstrap Build Settings
 * Description: Add in Twitter Bootstrap grid classes, markup and row types for backwards-compatibility.
 * Version: 1.0
 * Author: Crowd Favorite
 * Author URI: http://crowdfavorite.com
 */
  
-class CFCT_Restore_Deprecated {
+class CFCT_Enable_Bootstrap {
         public $row_classes_change_map = array();
         public $block_classes_change_map = array();
         
@@ -52,10 +52,6 @@ class CFCT_Restore_Deprecated {
 
                 'c4-12' => 'span6',
                 'c4-34' => 'span6',
-
-                'c6-12' => 'span4',
-                'c6-34' => 'span4',
-                'c6-56' => 'span4',
 
                 'c6-12' => 'span4',
                 'c6-34' => 'span4',
@@ -363,18 +359,18 @@ class CFCT_Restore_Deprecated {
          * Hook this into init()
          */
         public static function init() {
-//                 $diagnostics = self::check_features();
-//                 if (is_wp_error($diagnostics)) {
-//                         $cb = create_function('', 'echo "<div class=\'message error\'>
-//         <p>'.$diagnostics->get_error_message().'</p>
-// </div>";');
-//                         add_action('admin_notices', $cb);
-//                 }
-//                 else {
-                        $instance = new CFCT_Restore_Deprecated();
+                $diagnostics = self::check_features();
+                if (is_wp_error($diagnostics)) {
+                        $cb = create_function('', 'echo "<div class=\'message error\'>
+        <p>'.$diagnostics->get_error_message().'</p>
+</div>";');
+                        add_action('admin_notices', $cb);
+                }
+                else {
+                        $instance = new CFCT_Enable_Bootstrap();
                         $instance->attach_hooks();
-                //}
+                }
         }
 }
-add_action('init', array('CFCT_Restore_Deprecated', 'init'));
+add_action('init', array('CFCT_Enable_Bootstrap', 'init'));
 ?>
