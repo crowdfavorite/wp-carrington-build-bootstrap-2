@@ -114,13 +114,14 @@ class CFCT_Enable_Bootstrap {
 	}
 	
 	public function restore_classes($ch_ch_ch_changes, $classes) {
+		
 		foreach ($ch_ch_ch_changes as $pair) {
 			/* (turn and face the strain) */
 			$intersect = array_intersect($classes, $pair['new']);
 			/* Does the row have the same classes that we've recorded as new?
 			Then it's a match, so add the equivalent old classes. */
 			if (count($intersect) == count($pair['new'])) {
-				$classes = array_merge($classes, $pair['old']);
+				$classes = $pair['old'];
 			}
 		}
 		
@@ -129,7 +130,7 @@ class CFCT_Enable_Bootstrap {
 	
 	public function restore_block_classes($classes, $block_instance) {
 		$classes = $this->restore_classes(
-				$this->block_classes_change_map, $classes
+			$this->block_classes_change_map, $classes
 		);
 		return $classes;
 	}
