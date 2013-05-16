@@ -8,7 +8,20 @@
 */
  
 class CFCT_Enable_Bootstrap {
+	public $row_classes_change_map = array();
 	public $block_classes_change_map = array();
+
+	public $old_row_classname_to_new = array(
+        // Rows
+        'row-c4-1234' => 'row-span12',
+
+        'row-c6-12-34-56' => 'row-span4-span4-span4',
+
+        'row-c6-1234-56' => 'row-span8-span4',
+        'row-c6-12-3456' => 'row-span4-span8',
+
+        'row-c4-12-34' => 'row-span6-span6',
+	);
 
 	public $old_block_classname_to_new = array(
 		// All New Grid classes in Carrington
@@ -26,6 +39,9 @@ class CFCT_Enable_Bootstrap {
 	);
 	
 	public function __construct() {
+		foreach ($this->old_row_classname_to_new as $new => $old) {
+            $this->push_row_class_change($old, $new);
+        }
 		foreach ($this->old_block_classname_to_new as $new => $old) {
 			$this->push_block_class_change($old, $new);
 		}
@@ -58,7 +74,28 @@ class CFCT_Enable_Bootstrap {
 			array($this, 'restore_block_template'),
 			10, 2
 		);
-						
+		
+		/* We still use the old-school row filter keys to avoid
+        breaking backwards compat with filters. */
+        $row_class_filters = array(
+            'cfct-row-abc-classes',
+            'cfct-row-d-e-classes',
+            'cfct-row-a-bc-classes',
+            'cfct-row-ab-c-classes',
+            'cfct-row-a-b-c-classes',
+            'cfct-row-float-c-classes',
+            'cfct-row-float-a-classes'
+        );
+		
+		// Add row filter filters
+        foreach ($row_class_filters as $filter_key) {
+            add_filter(
+                $filter_key,
+                array($this, 'restore_row_classes'),
+                10, 2
+            );
+        }
+
 		$block_class_filters = array(
 			/* Full */
 			'cfct-block-c4-1234-classes',
@@ -76,7 +113,7 @@ class CFCT_Enable_Bootstrap {
 			'cfct-block-c6-1234-classes',
 			'cfct-block-c6-3456-classes'
 		);
-			
+		
 		foreach($block_class_filters as $filter_key) {
 			add_filter(
 				$filter_key,
@@ -99,7 +136,14 @@ class CFCT_Enable_Bootstrap {
 	public function restore_block_template($html, $block_instance) {
 		return '<div id="{id}" class="{class}">{modules}</div>';
 	}
-			
+
+ 	public function push_row_class_change($old, $new) {
+		$this->row_classes_change_map[] = array(
+			'old' => cfct_tpl::extract_classes($old),
+			'new' => cfct_tpl::extract_classes($new)
+		);
+	}
+
 	public function push_block_class_change($old, $new) {
 		$this->block_classes_change_map[] = array(
 			'old' => cfct_tpl::extract_classes($old),
@@ -127,6 +171,14 @@ class CFCT_Enable_Bootstrap {
 		return cfct_tpl::clean_classes($classes);
 	}
 	
+	public function restore_row_classes($classes, $row_instance) {
+        $classes = $this->restore_classes(
+            $this->row_classes_change_map, $classes
+        );
+        $classes[] = 'cfct-row';
+        return $classes;
+    }
+
 	public function restore_block_classes($classes, $block_instance) {
 		$classes = $this->restore_classes(
 				$this->block_classes_change_map, $classes
