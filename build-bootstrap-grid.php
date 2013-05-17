@@ -1,11 +1,24 @@
 <?php
-/*
-* Plugin Name: Twitter Bootstrap Grid
-* Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility in Carrington Build.
-* Version: 1.0
-* Author: Crowd Favorite
-* Author URI: http://crowdfavorite.com
-*/
+/**
+ * Plugin Name: Twitter Bootstrap Grid
+ * Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility in Carrington Build.
+ * Version: 1.0
+ * Author: Crowd Favorite
+ * Author URI: http://crowdfavorite.com
+ *
+ * @package twitter-bootstrap-grid
+ *
+ * This file is part of the Twitter Bootstrap Grid plugin for WordPress
+ *
+ * Copyright (c) 2008-2013 Crowd Favorite, Ltd. All rights reserved.
+ * http://crowdfavorite.com
+ *
+ * **********************************************************************
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * **********************************************************************
+**/
  
 class CFCT_Enable_Bootstrap {
 	public $row_classes_change_map = array();
