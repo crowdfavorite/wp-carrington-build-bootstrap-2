@@ -13,14 +13,14 @@ class CFCT_Enable_Bootstrap {
 
 	public $old_row_classname_to_new = array(
         // Rows
-        'row-c4-1234' => 'row-span12',
+        'row-c4-1234' => 'row-12',
 
-        'row-c6-12-34-56' => 'row-span4-span4-span4',
+        'row-c6-12-34-56' => 'row-4-4-4',
 
-        'row-c6-1234-56' => 'row-span8-span4',
-        'row-c6-12-3456' => 'row-span4-span8',
+        'row-c6-1234-56' => 'row-8-4',
+        'row-c6-12-3456' => 'row-4-8',
 
-        'row-c4-12-34' => 'row-span6-span6',
+        'row-c4-12-34' => 'row-6-6',
 	);
 
 	public $old_block_classname_to_new = array(
@@ -39,11 +39,11 @@ class CFCT_Enable_Bootstrap {
 	);
 	
 	public function __construct() {
-		foreach ($this->old_row_classname_to_new as $new => $old) {
-            $this->push_row_class_change($old, $new);
+		foreach ($this->old_row_classname_to_new as $old => $new) {
+            $this->push_row_class_change($new, $old);
         }
-		foreach ($this->old_block_classname_to_new as $new => $old) {
-			$this->push_block_class_change($old, $new);
+		foreach ($this->old_block_classname_to_new as $old => $new) {
+			$this->push_block_class_change($new, $old);
 		}
 
 		return $this;
@@ -137,14 +137,14 @@ class CFCT_Enable_Bootstrap {
 		return '<div id="{id}" class="{class}">{modules}</div>';
 	}
 
- 	public function push_row_class_change($old, $new) {
+ 	public function push_row_class_change($new, $old) {
 		$this->row_classes_change_map[] = array(
 			'old' => cfct_tpl::extract_classes($old),
 			'new' => cfct_tpl::extract_classes($new)
 		);
 	}
 
-	public function push_block_class_change($old, $new) {
+	public function push_block_class_change($new, $old) {
 		$this->block_classes_change_map[] = array(
 			'old' => cfct_tpl::extract_classes($old),
 			'new' => cfct_tpl::extract_classes($new)
@@ -160,11 +160,11 @@ class CFCT_Enable_Bootstrap {
 	public function restore_classes($ch_ch_ch_changes, $classes) {
 		foreach ($ch_ch_ch_changes as $pair) {
 			/* (turn and face the strain) */
-			$intersect = array_intersect($classes, $pair['new']);
+			$intersect = array_intersect($classes, $pair['old']);
 			/* Does the row have the same classes that we've recorded as new?
 			Then it's a match, so add the equivalent old classes. */
-			if (count($intersect) == count($pair['new'])) {
-				$classes = array_replace($classes, $pair['old']);
+			if (count($intersect) == count($pair['old'])) {
+				$classes = array_replace($classes, $pair['new']);
 			}
 		}
 		
