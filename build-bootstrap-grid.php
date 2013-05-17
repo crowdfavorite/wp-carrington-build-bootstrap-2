@@ -1,7 +1,7 @@
 <?php
 /*
-* Plugin Name: Twitter Bootstrap grid for Carrigton Build
-* Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility.
+* Plugin Name: Twitter Bootstrap Grid
+* Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility in Carrington Build.
 * Version: 1.0
 * Author: Crowd Favorite
 * Author URI: http://crowdfavorite.com
@@ -199,7 +199,7 @@ class CFCT_Enable_Bootstrap {
 	 */
 	public static function check_features() {
 		if (!function_exists('cfct_build')) {
-			return new WP_Error('function not found', 'Carrington Build needs to be activated for \"Twitter Bootstrap grid for Carrigton Buildadd \" to take effect.');
+			return new WP_Error('function not found', 'Carrington Build needs to be activated for \"Twitter Bootstrap Grid\" to take effect.');
 		}
 		if (!class_exists('cfct_tpl')) {
 			return new WP_Error('class not found', 'Class cfct_tpl does not exist. You probably need to install a newer version of Carrington Build.');
