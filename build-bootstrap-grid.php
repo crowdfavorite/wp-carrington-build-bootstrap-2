@@ -25,15 +25,15 @@ class CFCT_Enable_Bootstrap {
 	public $block_classes_change_map = array();
 
 	public $old_row_classname_to_new = array(
-        // Rows
-        'row-c4-1234' => 'row-12',
+		// Rows
+		'row-c4-1234' => 'row-12',
 
-        'row-c6-12-34-56' => 'row-4-4-4',
+		'row-c6-12-34-56' => 'row-4-4-4',
 
-        'row-c6-1234-56' => 'row-8-4',
-        'row-c6-12-3456' => 'row-4-8',
+		'row-c6-1234-56' => 'row-8-4',
+		'row-c6-12-3456' => 'row-4-8',
 
-        'row-c4-12-34' => 'row-6-6',
+		'row-c4-12-34' => 'row-6-6',
 	);
 
 	public $old_block_classname_to_new = array(
@@ -53,8 +53,8 @@ class CFCT_Enable_Bootstrap {
 	
 	public function __construct() {
 		foreach ($this->old_row_classname_to_new as $old => $new) {
-            $this->push_row_class_change($new, $old);
-        }
+			$this->push_row_class_change($new, $old);
+		}
 		foreach ($this->old_block_classname_to_new as $old => $new) {
 			$this->push_block_class_change($new, $old);
 		}
@@ -89,25 +89,25 @@ class CFCT_Enable_Bootstrap {
 		);
 		
 		/* We still use the old-school row filter keys to avoid
-        breaking backwards compat with filters. */
-        $row_class_filters = array(
-            'cfct-row-abc-classes',
-            'cfct-row-d-e-classes',
-            'cfct-row-a-bc-classes',
-            'cfct-row-ab-c-classes',
-            'cfct-row-a-b-c-classes',
-            'cfct-row-float-c-classes',
-            'cfct-row-float-a-classes'
-        );
+		breaking backwards compat with filters. */
+		$row_class_filters = array(
+			'cfct-row-abc-classes',
+			'cfct-row-d-e-classes',
+			'cfct-row-a-bc-classes',
+			'cfct-row-ab-c-classes',
+			'cfct-row-a-b-c-classes',
+			'cfct-row-float-c-classes',
+			'cfct-row-float-a-classes'
+		);
 		
 		// Add row filter filters
-        foreach ($row_class_filters as $filter_key) {
-            add_filter(
-                $filter_key,
-                array($this, 'restore_row_classes'),
-                10, 2
-            );
-        }
+		foreach ($row_class_filters as $filter_key) {
+			add_filter(
+				$filter_key,
+				array($this, 'restore_row_classes'),
+				10, 2
+			);
+		}
 
 		$block_class_filters = array(
 			/* Full */
@@ -150,7 +150,7 @@ class CFCT_Enable_Bootstrap {
 		return '<div id="{id}" class="{class}">{modules}</div>';
 	}
 
- 	public function push_row_class_change($new, $old) {
+	public function push_row_class_change($new, $old) {
 		$this->row_classes_change_map[] = array(
 			'old' => cfct_tpl::extract_classes($old),
 			'new' => cfct_tpl::extract_classes($new)
@@ -185,12 +185,12 @@ class CFCT_Enable_Bootstrap {
 	}
 	
 	public function restore_row_classes($classes, $row_instance) {
-        $classes = $this->restore_classes(
-            $this->row_classes_change_map, $classes
-        );
-        $classes[] = 'cfct-row';
-        return $classes;
-    }
+		$classes = $this->restore_classes(
+			$this->row_classes_change_map, $classes
+		);
+		$classes[] = 'cfct-row';
+		return $classes;
+	}
 
 	public function restore_block_classes($classes, $block_instance) {
 		$classes = $this->restore_classes(
