@@ -1,4 +1,4 @@
-# Twitter Bootstrap Compatibility for Carrington Build
+# Twitter Bootstrap for Carrington Build
 
 This plugin is meant for sites utilizing the Twitter Bootstrap framework in conjunction with Carrington Build. It adds the Bootstrap-specific fluid row and span classes to Carrington Build's HTML output.
 
