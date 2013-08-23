@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Twitter Bootstrap Grid
+ * Plugin Name: Twitter Bootstrap for Carrington Build
  * Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility in Carrington Build.
  * Version: 1.0
  * Author: Crowd Favorite
@@ -186,7 +186,8 @@ class CFCT_Enable_Bootstrap {
 	
 	public function restore_row_classes($classes, $row_instance) {
 		$classes = $this->restore_classes(
-			$this->row_classes_change_map, $classes
+			$this->row_classes_change_map,
+			$classes
 		);
 		$classes[] = 'cfct-row';
 		return $classes;
@@ -194,7 +195,8 @@ class CFCT_Enable_Bootstrap {
 
 	public function restore_block_classes($classes, $block_instance) {
 		$classes = $this->restore_classes(
-				$this->block_classes_change_map, $classes
+			$this->block_classes_change_map,
+			$classes
 		);
 		return $classes;
 	}
@@ -240,4 +242,3 @@ class CFCT_Enable_Bootstrap {
 	}
 }
 add_action('init', array('CFCT_Enable_Bootstrap', 'init'));
-?>
