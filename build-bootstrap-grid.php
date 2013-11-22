@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Twitter Bootstrap for Carrington Build
  * Description: Add in Twitter Bootstrap grid classes and markup for Twitter Bootstrap-compatibility in Carrington Build.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Crowd Favorite
  * Author URI: http://crowdfavorite.com
  * License: GPLv2
